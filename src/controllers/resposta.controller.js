@@ -4,7 +4,7 @@ const create = async (req, res) => {
     try {
         const { idaluno, nomealuno, item, descricao, resposta, acerto, tempo } = req.body
 
-        if (!idaluno || !nomealuno || !item || !descricao || !resposta) {
+        if (!idaluno || !nomealuno || !item || !descricao || !resposta || !acerto) {
             return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro da resposta" })
         }
 
