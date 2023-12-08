@@ -4,10 +4,6 @@ const create = async (req, res) => {
     try {
         const { idaluno, nomealuno, item, descricao, resposta, acerto, tempo } = req.body
 
-        if (!idaluno || !nomealuno || !item || !descricao || !resposta || !acerto) {
-            return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro da resposta" })
-        }
-
         const respo = await createService({
             idaluno,
             nomealuno,
@@ -24,7 +20,7 @@ const create = async (req, res) => {
 
         res.status(201).send({
             message: "Resposta registrada com sucesso",
-            planta: {
+            resposta: {
                 idaluno,
                 nomealuno,
                 item,
