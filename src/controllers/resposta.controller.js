@@ -4,7 +4,7 @@ const create = async (req, res) => {
     try {
         const { idaluno, nomealuno, item, descricao, resposta, acerto, tempo } = req.body
 
-        if (!idaluno || !nomealuno || !item || !descricao || !resposta || !acerto) {
+        if (!idaluno || !nomealuno || !item || !descricao || !resposta) {
             return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro da resposta" })
         }
 
@@ -39,7 +39,7 @@ const create = async (req, res) => {
     }
 }
 
-const findAll = async (req, res) => {
+const findAll = async (req, res) => { 
     try {
         const respostas = await findAllService()
 
@@ -52,5 +52,7 @@ const findAll = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 }
+
+
 
 export { create, findAll }
