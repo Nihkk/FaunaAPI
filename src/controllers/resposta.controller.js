@@ -1,4 +1,4 @@
-import { createService, findAllService } from '../services/reposta.service.js'
+import { createService, findAllService, findByIdService } from '../services/reposta.service.js'
 
 const create = async (req, res) => {
     try {
@@ -53,6 +53,20 @@ const findAll = async (req, res) => {
     }
 }
 
+const findById = async (req, res) => { //Retorna todas as respostas de um aluno pelo seu ID
+    try {
+        const { idaluno } = req.body
 
+        const respostas = await findByIdService(idaluno)
 
-export { create, findAll }
+        if (!respostas){
+            return res.status(400).send({ message: "Respostas não encontradas!" })
+        }
+
+        res.send(respostas)
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
+export { create, findAll, findById }
