@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt'
-import { loginServiceAluno, generateToken } from '../services/auth.service.js'
+import { loginServiceProf, generateToken } from '../services/auth.service.js'
 
-const loginAluno = async (req, res) => {
+const loginProf = async (req, res) => {
     const { email, password } = req.body
 
     try {
-        const user = await loginServiceAluno(email)
+        const user = await loginServiceProf(email)
 
         if(!user){
             return res.status(404).send({message: "Usuário ou senha inválidos"})
@@ -26,4 +26,4 @@ const loginAluno = async (req, res) => {
     }
 }
 
-export { loginAluno }
+export { loginProf }

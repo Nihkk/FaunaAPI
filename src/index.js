@@ -6,6 +6,7 @@ import cors from 'cors'
 import alunoRoute from './routes/aluno.route.js'
 import authRoute from './routes/auth.route.js'
 import respostaRoute from './routes/resposta.route.js'
+import profRoute from './routes/prof.route.js'
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ const app = express()
     app.use('/aluno', alunoRoute)
     app.use('/auth', authRoute)
     app.use('/resposta', respostaRoute)
+    app.use('/prof', profRoute)
 
 //Função utilizada para abrir uma conexão com o cliente
 const port = process.env.PORT || 3000

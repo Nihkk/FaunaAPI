@@ -1,11 +1,11 @@
-import { createService, findAllService, updateService } from '../services/aluno.service.js'
+import { createService, findAllService, updateService } from '../services/prof.service.js'
 
 const create = async (req, res) => {
     try {
         const confirmpassword = req.body.confirmpassword
-        const { userid ,name, birthdate, gender, email, password } = req.body
+        const { nome, datanasc, genero, estado, instituicao, ocupacao, email, password } = req.body
 
-        if (!userid || !name || !birthdate || !gender || !email || !password || !confirmpassword) {
+        if (!nome || !datanasc || !instituicao || !ocupacao || !email || !password || !confirmpassword) {
             return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro" })
         }
 
@@ -14,10 +14,12 @@ const create = async (req, res) => {
         }
 
         const user = await createService({ 
-            userid,
-            name,  
-            birthdate, 
-            gender, 
+            nome,  
+            datanasc, 
+            genero,
+            estado,
+            instituicao,
+            ocupacao, 
             email, 
             password 
         })
@@ -30,11 +32,13 @@ const create = async (req, res) => {
             message: "Usuario criado com sucesso",
             user: {
                 id: user._id,
-                userid,
-                name,
-                birthdate,
-                gender,
-                email
+                nome,  
+                datanasc, 
+                genero,
+                estado,
+                instituicao,
+                ocupacao, 
+                email 
             },
         })
     } catch (err) {
