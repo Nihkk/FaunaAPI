@@ -2,41 +2,25 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const AlunoSchema = new mongoose.Schema({
-    userid: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    name: {
+    nome: {
         type: String,
         required: true
     },
-    birthdate: {
+    datanasc: {
         type: String,
         required: true
     },
-    gender: {
+    genero: {
         type: String,
         required: true
     },
-    email: {
+    escola: {
         type: String,
-        required: true,
-        unique: true
     },
-    password: {
+    serie: {
         type: String,
-        required: true,
-        select: false
-    },
-    confirmpassword: {
-        type: String,
+        required: true
     }
-})
-
-AlunoSchema.pre("save", async function (next) {
-    this.password = await bcrypt.hash(this.password, 10)
-    next()
 })
 
 const Aluno = mongoose.model('Alunos', AlunoSchema)

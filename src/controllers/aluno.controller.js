@@ -2,24 +2,18 @@ import { createService, findAllService, updateService } from '../services/aluno.
 
 const create = async (req, res) => {
     try {
-        const confirmpassword = req.body.confirmpassword
-        const { userid ,name, birthdate, gender, email, password } = req.body
+        const { nome, datanasc, genero, escola, serie } = req.body
 
-        if (!userid || !name || !birthdate || !gender || !email || !password || !confirmpassword) {
+        if (!nome || !datanasc || !genero || !escola || !serie) {
             return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro" })
         }
 
-        if (confirmpassword != password) {
-            return res.status(400).send({ message: "A confirmação de senha está incorreta!" })
-        }
-
         const user = await createService({ 
-            userid,
-            name,  
-            birthdate, 
-            gender, 
-            email, 
-            password 
+            nome,  
+            datanasc, 
+            genero, 
+            escola, 
+            serie 
         })
 
         if (!user) {
@@ -30,11 +24,11 @@ const create = async (req, res) => {
             message: "Usuario criado com sucesso",
             user: {
                 id: user._id,
-                userid,
-                name,
-                birthdate,
-                gender,
-                email
+                nome,
+                datanasc,
+                genero,
+                escola,
+                serie
             },
         })
     } catch (err) {

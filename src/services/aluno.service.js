@@ -8,17 +8,14 @@ const findByIdService = (id) => Aluno.findById(id)
 
 const updateService = (
     id,
-    name,
-    lastname,
-    birthdate,
-    gender,
-    address,
-    phonenumber,
-    email,
-    password
+    nome,
+    datanasc,
+    genero,
+    escola,
+    serie
 ) => Aluno.findOneAndUpdate(
     { _id: id },
-    { name, lastname, birthdate, gender, address, phonenumber, email, password }
+    { nome, datanasc, genero, escola, serie }
 )
 
 export {
