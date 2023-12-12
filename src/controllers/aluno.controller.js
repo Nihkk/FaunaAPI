@@ -1,4 +1,4 @@
-import { createService, findAllService, updateService } from '../services/aluno.service.js'
+import { createService, findAllService, removeByIdService, updateService } from '../services/aluno.service.js'
 
 const create = async (req, res) => {
     try {
@@ -60,6 +60,19 @@ const findById = async (req, res) => {
     }
 }
 
+const removeById = async (req, res) => {
+    try {
+        const { id } = req.body
+
+        await removeByIdService(id)
+
+        res.send("Aluno removido com sucesso!")
+
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
 const update = async (req, res) => {
     try {
         const { name, lastname, birthdate, gender, address, phonenumber, email, password, confirmpassword } = req.body
@@ -88,4 +101,4 @@ const update = async (req, res) => {
     }
 }
 
-export { create, findAll, findById, update }
+export { create, findAll, findById, removeById, update }
