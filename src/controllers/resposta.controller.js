@@ -1,4 +1,4 @@
-import { createService, findAllService, findByIdService } from '../services/reposta.service.js'
+import { createService, findAllService, removeByIdService, findByIdService } from '../services/reposta.service.js'
 
 const create = async (req, res) => {
     try {
@@ -69,4 +69,16 @@ const findById = async (req, res) => { //Retorna todas as respostas de um aluno 
     }
 }
 
-export { create, findAll, findById }
+const removeById = async (req, res) => {
+    try {
+        const { idaluno } = req.body
+
+        await removeByIdService(idaluno)
+
+        res.send("Repostas removidas com sucesso!")
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
+export { create, findAll, findById, removeById }

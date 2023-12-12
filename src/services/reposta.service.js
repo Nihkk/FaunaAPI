@@ -6,8 +6,11 @@ const findAllService = () => Resposta.find()
 
 const findByIdService = (id) => Resposta.find({idaluno: id}) 
 
+const removeByIdService = (id) => Resposta.deleteMany({idaluno: id})
+
 export {
     createService, 
     findAllService,
-    findByIdService
+    findByIdService,
+    removeByIdService
 }
