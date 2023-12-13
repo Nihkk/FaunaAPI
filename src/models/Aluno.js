@@ -20,6 +20,10 @@ const AlunoSchema = new mongoose.Schema({
     serie: {
         type: String,
         required: true
+    },
+    idprof: {
+        type: String,
+        required: true
     }
 })
 

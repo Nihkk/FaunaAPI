@@ -6,6 +6,8 @@ const findAllService = () => Aluno.find()
 
 const findByIdService = (id) => Aluno.findById(id)
 
+const findByProfService = (id) => Aluno.find({idprof: id})
+
 const removeByIdService = (id) => Aluno.findByIdAndDelete(id)
 
 const updateService = (
@@ -24,6 +26,7 @@ export {
     createService,
     findAllService,
     findByIdService,
+    findByProfService,
     removeByIdService,
     updateService
 }

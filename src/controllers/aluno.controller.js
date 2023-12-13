@@ -1,10 +1,17 @@
-import { createService, findAllService, findByIdService, removeByIdService, updateService } from '../services/aluno.service.js'
+import { 
+    createService, 
+    findAllService, 
+    findByIdService,
+    findByProfService, 
+    removeByIdService, 
+    updateService 
+} from '../services/aluno.service.js'
 
 const create = async (req, res) => {
     try {
-        const { nome, datanasc, genero, escola, serie } = req.body
+        const { nome, datanasc, genero, escola, serie, idprof } = req.body
 
-        if (!nome || !datanasc || !genero || !escola || !serie) {
+        if (!nome || !datanasc || !genero || !escola || !serie || !idprof) {
             return res.status(400).send({ message: "Informe todos os campos obrigatorios para registro" })
         }
 
@@ -13,7 +20,8 @@ const create = async (req, res) => {
             datanasc, 
             genero, 
             escola, 
-            serie 
+            serie,
+            idprof 
         })
 
         if (!user) {
@@ -28,7 +36,8 @@ const create = async (req, res) => {
                 datanasc,
                 genero,
                 escola,
-                serie
+                serie,
+                idprof
             },
         })
     } catch (err) {
@@ -66,13 +75,29 @@ const findById = async (req, res) => {
     }
 }
 
+const findByProf = async (req, res) => {
+    try {
+        const { idprof } = req.body
+
+        const users = await findByProfService(idprof)
+
+        if(!users) {
+            return res.status(400).send({ message: "Este professor não possui alunos cadastrados" })
+        }
+
+        res.send(users)
+    } catch (error) {
+        
+    }
+}
+
 const removeById = async (req, res) => {
     try {
         const { id } = req.body
 
         await removeByIdService(id)
 
-        res.send("Aluno removido com sucesso!")
+        res.send({message: "Aluno removido com sucesso!"})
 
     } catch (err) {
         res.status(500).send({ message: err.message })
@@ -104,4 +129,4 @@ const update = async (req, res) => {
     }
 }
 
-export { create, findAll, findById, removeById, update }
+export { create, findAll, findById, findByProf, removeById, update }
