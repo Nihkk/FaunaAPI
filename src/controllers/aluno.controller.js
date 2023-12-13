@@ -1,4 +1,4 @@
-import { createService, findAllService, removeByIdService, updateService } from '../services/aluno.service.js'
+import { createService, findAllService, findByIdService, removeByIdService, updateService } from '../services/aluno.service.js'
 
 const create = async (req, res) => {
     try {
@@ -52,7 +52,13 @@ const findAll = async (req, res) => {
 
 const findById = async (req, res) => {
     try {
-        const user = req.user
+        const { id } = req.body
+
+        const user = await findByIdService(id)
+
+        if(!user) {
+            return res.status(400).send({ message: "Este aluno não está cadastrado." })
+        }
 
         res.send(user)
     } catch (err) {
