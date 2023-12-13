@@ -9,6 +9,6 @@ const router = Router()
 router.post('/', create) //Cadastra um professor
 router.get('/', findAll) //Retorna todos os professores cadastrados
 router.get('/perfil', authMiddleware, validId, validUser, findById)
-router.patch('/:id', validId, validUser, update)
+router.patch('/:id', update)
 
 export default router

@@ -75,24 +75,21 @@ const removeById = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { name, lastname, birthdate, gender, address, phonenumber, email, password, confirmpassword } = req.body
+        const { nome, datanasc, genero, escola, serie } = req.body
 
-        if (!name && !lastname && !birthdate && !gender && !address && !email && !password && !confirmpassword) {
+        if (!nome && !datanasc && !genero && !escola && !serie) {
             return res.status(400).send({ message: "Informe pelo menos um campo para atualização" })
         }
 
-        const id = req.id
+        const { id } = req.params
 
         await updateService(
             id,
-            name,
-            lastname,
-            birthdate,
-            gender,
-            address,
-            phonenumber,
-            email,
-            password
+            nome,
+            datanasc,
+            genero,
+            escola,
+            serie
         )
 
         res.send({ message: "Usuário atualizado com sucesso!" })

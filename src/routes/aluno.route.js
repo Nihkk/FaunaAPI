@@ -10,6 +10,6 @@ router.post('/', create) //Cadastra um aluno
 router.get('/', findAll) //Retorna todos os alunos cadastrados
 router.get('/perfil', authMiddleware, validId, validUser, findById)
 router.post('/remove', removeById)
-router.patch('/:id', validId, validUser, update)
+router.patch('/:id', update)
 
 export default router

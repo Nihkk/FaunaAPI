@@ -8,17 +8,15 @@ const findByIdService = (id) => Professor.findById(id)
 
 const updateService = (
     id,
-    name,
-    lastname,
-    birthdate,
-    gender,
-    address,
-    phonenumber,
-    email,
-    password
+    nome,
+    datanasc,
+    genero,
+    estado,
+    instituicao,
+    ocupacao
 ) => Professor.findOneAndUpdate(
     { _id: id },
-    { name, lastname, birthdate, gender, address, phonenumber, email, password }
+    { nome, datanasc, genero, estado, instituicao, ocupacao }
 )
 
 export {
