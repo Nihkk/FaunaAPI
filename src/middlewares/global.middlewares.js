@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { findByIdService } from '../services/aluno.service.js'
+import { findByIdService } from '../services/prof.service.js'
 
 export const validId = (req, res, next) => {
     try {
