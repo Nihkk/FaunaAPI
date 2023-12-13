@@ -75,7 +75,7 @@ const removeById = async (req, res) => {
 
         await removeByIdService(idaluno)
 
-        res.send("Repostas removidas com sucesso!")
+        res.send({message:"Repostas removidas com sucesso!"})
     } catch (err) {
         res.status(500).send({ message: err.message })
     }

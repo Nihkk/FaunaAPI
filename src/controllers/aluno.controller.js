@@ -50,7 +50,7 @@ const findAll = async (req, res) => {
         const users = await findAllService()
 
         if (users.length === 0) {
-            return res.status(400).send({ message: "Não há usuarios cadastrados" })
+            return res.status(400).send({ messsage: "Não há usuarios cadastrados" })
         }
 
         res.send(users)
