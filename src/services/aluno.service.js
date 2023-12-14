@@ -8,6 +8,16 @@ const findByIdService = (id) => Aluno.findById(id)
 
 const findByProfService = (id) => Aluno.find({idprof: id})
 
+const filterByNomeService = (id) => Aluno.find({idprof: id}).collation({'locale':'en'}).sort({nome: 1})
+
+const filterByEscolaService = (id, escola) => Aluno.find({
+    $and: [
+        {idprof: id},
+        {escola: {$regex: escola, $options: 'i'}}
+    ]
+}
+).collation({'locale':'en'}).sort({nome: 1})
+
 const removeByIdService = (id) => Aluno.findByIdAndDelete(id)
 
 const updateService = (
@@ -27,6 +37,8 @@ export {
     findAllService,
     findByIdService,
     findByProfService,
+    filterByNomeService,
+    filterByEscolaService,
     removeByIdService,
     updateService
 }

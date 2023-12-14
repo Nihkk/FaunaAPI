@@ -1,5 +1,7 @@
 import { 
     createService, 
+    filterByEscolaService, 
+    filterByNomeService, 
     findAllService, 
     findByIdService,
     findByProfService, 
@@ -91,6 +93,38 @@ const findByProf = async (req, res) => {
     }
 }
 
+const filterByNome = async (req, res) => {
+    try {
+        const { idprof } = req.body
+
+        const users = await filterByNomeService(idprof)
+
+        if (users.length === 0) {
+            return res.status(400).send({ messsage: "Não há usuarios cadastrados" })
+        }
+
+        res.send(users)
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
+const filterByEscola = async (req, res) => {
+    try {
+        const { idprof, escola } = req.body
+
+        const users = await filterByEscolaService(idprof, escola)
+
+        if (users.length === 0) {
+            return res.status(400).send({ messsage: "Não há alunos desta escola cadastrados" })
+        }
+
+        res.send(users)
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
 const removeById = async (req, res) => {
     try {
         const { id } = req.body
@@ -129,4 +163,13 @@ const update = async (req, res) => {
     }
 }
 
-export { create, findAll, findById, findByProf, removeById, update }
+export { 
+    create, 
+    findAll, 
+    findById, 
+    findByProf,
+    filterByNome,
+    filterByEscola,
+    removeById, 
+    update 
+}
